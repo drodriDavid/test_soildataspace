@@ -3,450 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo de Datos | Soil Data Space</title>
+<title>SoilDataSpace · Portal de Acceso</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
-/* ===================== */
-/* VARIABLES */
-/* ===================== */
 :root{
   --primary:#0a2540;
-  --secondary:#5d9b3e;
-  --accent:#008cba;
-  --bg:#f5f7fa;
-  --white:#fff;
-  --border:#e4e7eb;
-
-  --level1:#4caf50;
-  --level2:#ff9800;
-  --level3:#f44336;
-  --level4:#9c27b0;
+  --accent:#1b8f6b;
+  --bg:#f4f7f9;
+  --card:#ffffff;
+  --border:#e5e7eb;
+  --muted:#6b7280;
 }
 
-/* ===================== */
-/* GLOBAL */
-/* ===================== */
 body{
   margin:0;
-  font-family:'Roboto',sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--bg);
-  color:#333;
+  color:#1f2937;
 }
 
-h1{
-  font-family:'Montserrat';
-  margin:0;
-}
+/* CABECERA SUPERIOR */
 
-.container{
-  padding:40px;
-}
-
-/* ===================== */
-/* HEADER */
-/* ===================== */
-.header{
-  background:var(--primary);
-  padding:25px 40px;
-  color:white;
-}
-
-.header h1{
-  font-size:1.8rem;
-}
-
-/* ===================== */
-/* CONTROLS */
-/* ===================== */
-.controls{
+.hero{
   background:white;
-  padding:25px 40px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:15px;
+  padding:50px 20px;
   border-bottom:1px solid var(--border);
+  text-align:center;
 }
 
-.controls input,
-.controls select{
-  padding:10px 14px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  font-size:0.9rem;
-}
-
-.controls button{
-  padding:10px 18px;
-  background:var(--secondary);
-  color:white;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-.controls button:hover{
-  background:#4c8432;
-}
-
-/* ===================== */
-/* TABLE */
-/* ===================== */
-.table-wrapper{
-  padding:40px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  background:white;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-}
-
-thead{
-  background:#f0f4f8;
-}
-
-th, td{
-  padding:16px;
-  text-align:left;
-  font-size:0.9rem;
-}
-
-th{
-  cursor:pointer;
+.hero h1{
   font-family:'Montserrat';
-  font-size:0.8rem;
-  text-transform:uppercase;
-  letter-spacing:0.5px;
-  color:#555;
+  font-size:1.9rem;
+  color:var(--primary);
+  margin-bottom:15px;
 }
 
-tbody tr{
-  border-top:1px solid var(--border);
-  transition:0.2s;
+.hero p{
+  max-width:800px;
+  margin:auto;
+  font-size:0.95rem;
+  color:var(--muted);
 }
 
-tbody tr:hover{
-  background:#f9fafb;
+/* SECCIONES */
+
+.section{
+  max-width:1200px;
+  margin:60px auto;
+  padding:0 20px;
 }
 
-/* ===================== */
-/* DATASET NAME */
-/* ===================== */
-.dataset-name{
-  font-weight:600;
+.section h2{
+  font-family:'Montserrat';
+  font-size:1.2rem;
+  color:var(--primary);
+  margin-bottom:20px;
 }
 
-.dataset-desc{
-  font-size:0.75rem;
-  color:#777;
-  margin-top:4px;
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
 }
 
-.federated-tag{
-  font-size:0.65rem;
-  background:#eee;
-  padding:3px 6px;
-  border-radius:4px;
-  margin-left:8px;
+.card{
+  background:var(--card);
+  padding:30px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  transition:0.25s;
+  cursor:pointer;
 }
 
-/* ===================== */
-/* BADGES */
-/* ===================== */
-.badge{
-  padding:5px 10px;
-  border-radius:20px;
-  font-size:0.75rem;
-  font-weight:600;
-  color:white;
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(0,0,0,0.06);
 }
 
-.agri{ background:#6abf4b;}
-.hidro{ background:#0288d1;}
-.clima{ background:#4db6ac;}
-.geo{ background:#888;}
-
-/* ===================== */
-/* ACCESS LEVEL */
-/* ===================== */
-.level{
-  padding:6px 12px;
-  border-radius:20px;
-  font-size:0.7rem;
-  font-weight:700;
-  color:white;
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
+.card h3{
+  font-family:'Montserrat';
+  margin-top:0;
+  color:var(--primary);
+  font-size:1rem;
 }
 
-.l1{ background:var(--level1);}
-.l2{ background:var(--level2);}
-.l3{ background:var(--level3);}
-.l4{ background:var(--level4);}
+.card p{
+  font-size:0.9rem;
+  color:var(--muted);
+  line-height:1.5;
+}
 
-.request-btn{
-  margin-top:6px;
-  padding:6px 10px;
-  font-size:0.7rem;
+.button{
+  display:inline-block;
+  margin-top:18px;
+  padding:10px 16px;
   border-radius:6px;
-  border:none;
   background:var(--accent);
   color:white;
-  cursor:pointer;
+  font-size:0.8rem;
+  text-decoration:none;
 }
 
-.request-btn:hover{
-  background:#006c8e;
-}
+/* FOOTER */
 
-/* ===================== */
-/* PAGINATION */
-/* ===================== */
-.pagination{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin-top:20px;
+.footer{
+  text-align:center;
+  padding:40px;
+  font-size:0.8rem;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  margin-top:60px;
 }
-
-.pagination button{
-  padding:8px 12px;
-  border:none;
-  background:#ddd;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.pagination button.active{
-  background:var(--secondary);
-  color:white;
-}
-
-@media(max-width:768px){
-  .controls, .table-wrapper{
-    padding:20px;
-  }
-}
-
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>Catálogo de Datos</h1>
+<div class="hero">
+  <h1>SoilDataSpace · Espacio de Datos Federado de Suelos</h1>
+  <p>
+    Infraestructura interoperable para la publicación, consumo y gobernanza
+    de datos relacionados con suelos, agricultura, hidrología y clima.
+    Acceda a datasets, servicios activos y catálogos federados.
+  </p>
 </div>
 
-<div class="controls">
-  <input type="text" id="search" placeholder="Buscar por palabra clave">
-  
-  <select id="filterTema">
-    <option value="">Todos los temas</option>
-    <option value="Agricultura">Agricultura</option>
-    <option value="Agua">Agua</option>
-    <option value="Clima">Clima</option>
-    <option value="Geología">Geología</option>
-  </select>
+<!-- RECURSOS INTERNOS -->
+<div class="section">
+  <h2>Recursos del Espacio de Datos</h2>
 
-  <select id="filterLevel">
-    <option value="">Todos los niveles</option>
-    <option value="1">Nivel 1 - Abierto</option>
-    <option value="2">Nivel 2 - Compartido</option>
-    <option value="3">Nivel 3 - Restringido</option>
-    <option value="4">Nivel 4 - Sensible</option>
-  </select>
+  <div class="cards">
 
-  <button onclick="resetFilters()">Limpiar</button>
+    <div class="card" onclick="goToCatalog('datasets')">
+      <h3>Catálogo de Datasets</h3>
+      <p>
+        Conjuntos de datos publicados por entidades adheridas.
+        Incluye metadatos técnicos, formatos disponibles y niveles de acceso.
+      </p>
+      <a class="button">Explorar catálogo</a>
+    </div>
+
+    <div class="card" onclick="goToCatalog('servicios')">
+      <h3>Servicios Activos</h3>
+      <p>
+        APIs interoperables, endpoints NGSI-LD, servicios GIS (WMS/WFS)
+        y herramientas de explotación avanzada.
+      </p>
+      <a class="button">Ver servicios</a>
+    </div>
+
+  </div>
 </div>
 
-<div class="table-wrapper">
-<table id="datasetTable">
-<thead>
-<tr>
-  <th onclick="sortTable('nombre')">Nombre</th>
-  <th onclick="sortTable('tema')">Tema</th>
-  <th onclick="sortTable('editor')">Editor</th>
-  <th onclick="sortTable('nivel')">Nivel</th>
-  <th onclick="sortTable('fecha')">Actualización</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
+<!-- CATÁLOGOS FEDERADOS -->
+<div class="section">
+  <h2>Acceso a Catálogos Públicos</h2>
 
-<div class="pagination" id="pagination"></div>
+  <div class="cards">
 
+    <div class="card" onclick="goToCatalog('agro')">
+      <h3>Infraestructuras Agroalimentarias</h3>
+      <p>
+        Plataformas nacionales y europeas.
+      </p>
+      <a class="button">Explorar</a>
+    </div>
+
+    <div class="card" onclick="goToCatalog('clima')">
+      <h3>Datos Climáticos Europeos</h3>
+      <p>
+        Infraestructuras abiertas de datos ambientales y meteorológicos.
+      </p>
+      <a class="button">Explorar</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- INFORMACIÓN ACCESO -->
+<div class="section">
+  <h2>Información de Acceso</h2>
+
+  <p style="max-width:800px; color:var(--muted);">
+    El acceso a datasets clasificados como restringidos requiere autenticación
+    y validación contractual previa. Consulte la documentación técnica asociada
+    a cada recurso dentro del catálogo.
+  </p>
+</div>
+
+<div class="footer">
+  © 2026 SoilDataSpace · Infraestructura Federada de Datos
 </div>
 
 <script>
-
-const datasets = [
-  {
-    nombre:"Balance de Nitrógeno",
-    descripcion:"Cálculo optimizado del balance suelo-cultivo tras cosecha.",
-    tema:"Agricultura",
-    editor:"UJA",
-    fecha:"2026-02-10",
-    nivel:1,
-    federado:true
-  },
-  {
-    nombre:"Modelo de erosión hídrica",
-    descripcion:"Simulación del riesgo erosivo en cuencas mediterráneas.",
-    tema:"Agua",
-    editor:"Junta",
-    fecha:"2026-01-15",
-    nivel:2,
-    federado:false
-  },
-  {
-    nombre:"Captura de carbono suelo",
-    descripcion:"Estimación multiescala de carbono orgánico.",
-    tema:"Clima",
-    editor:"MAPA",
-    fecha:"2026-02-01",
-    nivel:3,
-    federado:true
-  },
-  {
-    nombre:"Mapa geológico Andalucía",
-    descripcion:"Cartografía estructural y litológica regional.",
-    tema:"Geología",
-    editor:"UJA",
-    fecha:"2025-12-20",
-    nivel:4,
-    federado:false
-  }
-];
-
-let currentPage = 1;
-const rowsPerPage = 5;
-let filteredData = [...datasets];
-let currentSort = null;
-
-function renderTable(data){
-  const tbody = document.querySelector("#datasetTable tbody");
-  tbody.innerHTML = "";
-
-  const start = (currentPage-1)*rowsPerPage;
-  const paginated = data.slice(start, start+rowsPerPage);
-
-  paginated.forEach(ds=>{
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-      <td>
-        <div class="dataset-name">
-          ${ds.nombre}
-          ${ds.federado ? '<span class="federated-tag">Federado</span>' : ''}
-        </div>
-        <div class="dataset-desc">${ds.descripcion}</div>
-      </td>
-      <td>${renderBadge(ds.tema)}</td>
-      <td>${ds.editor}</td>
-      <td>${renderLevel(ds.nivel)}</td>
-      <td>${ds.fecha}</td>
-    `;
-
-    tbody.appendChild(row);
-  });
-
-  renderPagination(data.length);
-}
-
-function renderBadge(tema){
-  const classes = {
-    "Agricultura":"agri",
-    "Agua":"hidro",
-    "Clima":"clima",
-    "Geología":"geo"
-  };
-  return `<span class="badge ${classes[tema]}">${tema}</span>`;
-}
-
-function renderLevel(nivel){
-  const levels = {
-    1:{text:"🌍 Abierto"},
-    2:{text:"🤝 Compartido"},
-    3:{text:"🔒 Restringido"},
-    4:{text:"🛡 Sensible"}
-  };
-
-  let button = "";
-  if(nivel>1){
-    button = `<button class="request-btn" onclick="alert('Flujo de contrato / usage control')">Solicitar acceso</button>`;
-  }
-
-  return `
-    <div>
-      <span class="level l${nivel}" title="Nivel ${nivel}">
-        ${levels[nivel].text}
-      </span>
-      ${button}
-    </div>
-  `;
-}
-
-function applyFilters(){
-  const search = document.getElementById("search").value.toLowerCase();
-  const tema = document.getElementById("filterTema").value;
-  const level = document.getElementById("filterLevel").value;
-
-  filteredData = datasets.filter(ds=>{
-    return (
-      ds.nombre.toLowerCase().includes(search) &&
-      (tema==="" || ds.tema===tema) &&
-      (level==="" || ds.nivel==level)
-    );
-  });
-
-  currentPage=1;
-  renderTable(filteredData);
-}
-
-function resetFilters(){
-  document.getElementById("search").value="";
-  document.getElementById("filterTema").value="";
-  document.getElementById("filterLevel").value="";
-  applyFilters();
-}
-
-function sortTable(field){
-  filteredData.sort((a,b)=>{
-    return a[field]>b[field]?1:-1;
-  });
-  renderTable(filteredData);
-}
-
-function renderPagination(total){
-  const container = document.getElementById("pagination");
-  container.innerHTML="";
-  const pages = Math.ceil(total/rowsPerPage);
-
-  for(let i=1;i<=pages;i++){
-    const btn = document.createElement("button");
-    btn.textContent=i;
-    if(i===currentPage) btn.classList.add("active");
-    btn.onclick=()=>{
-      currentPage=i;
-      renderTable(filteredData);
-    };
-    container.appendChild(btn);
+function goToCatalog(type){
+  if(type === "servicios"){
+    window.location.href = "servicios.html";
+  } else {
+    window.location.href = "catalogo.html?tipo=" + type;
   }
 }
-
-document.getElementById("search").addEventListener("input",applyFilters);
-document.getElementById("filterTema").addEventListener("change",applyFilters);
-document.getElementById("filterLevel").addEventListener("change",applyFilters);
-
-renderTable(datasets);
-
 </script>
 
 </body>

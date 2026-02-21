@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoilDataSpace · Catálogo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0a2540;
+  --accent:#1b8f6b;
+  --bg:#f4f7f9;
+  --card:#ffffff;
+  --border:#e5e7eb;
+  --muted:#6b7280;
+}
+
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:#1f2937;
+}
+
+/* HERO */
+
+.hero{
+  background:white;
+  padding:35px 20px;
+  border-bottom:1px solid var(--border);
+}
+
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+}
+
+.hero h1{
+  font-family:'Montserrat';
+  font-size:1.6rem;
+  margin:0;
+  color:var(--accent);
+}
+
+/* WRAPPER */
+
+.wrapper{
+  max-width:1200px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+/* INTRO */
+
+.catalog-header{
+  background:var(--card);
+  padding:25px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  margin-bottom:30px;
+}
+
+/* FILTROS */
+
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.controls input,
+.controls select{
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  font-size:0.85rem;
+  background:white;
+}
+
+.result-count{
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-bottom:15px;
+}
+
+/* CARD TABLA */
+
+.card{
+  background:var(--card);
+  border-radius:12px;
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+
+/* CONTENEDOR CON SCROLL */
+.table-scroll{
+  max-height:750px;  /* ≈ 30 filas */
+  overflow-y:auto;
+}
+
+/* Scroll fino */
+.table-scroll::-webkit-scrollbar{
+  width:8px;
+}
+.table-scroll::-webkit-scrollbar-thumb{
+  background:#d1d5db;
+  border-radius:6px;
+}
+
+/* TABLA */
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:0.85rem;
+}
+
+thead{
+  background:#fafafa;
+  position:sticky;
+  top:0;
+  z-index:2;
+}
+
+th, td{
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+}
+
+th{
+  font-size:0.7rem;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+tbody tr{
+  cursor:pointer;
+  transition:0.2s;
+}
+
+tbody tr:hover{
+  background:#f9fbfc;
+}
+
+.dataset-name{
+  font-weight:600;
+  margin-bottom:3px;
+}
+
+.dataset-desc{
+  font-size:0.75rem;
+  color:var(--muted);
+}
+
+/* BADGES */
+
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:0.7rem;
+}
+
+.level-1{ background:#e6f4ea; }
+.level-2{ background:#fff8e1; }
+.level-3{ background:#fdecea; }
+.level-4{ background:#f3e5f5; }
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Catálogo de Datasets</h1>
+  </div>
+</div>
+
+<div class="wrapper">
+
+<div class="catalog-header">
+  <h2>Datasets federados del Espacio de Datos de Suelos</h2>
+  <p>Haga clic en un dataset para acceder a su ficha técnica.</p>
+</div>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Buscar dataset...">
+  <select id="filterCategoria">
+    <option value="">Categoría</option>
+    <option>Agricultura</option>
+    <option>Agua</option>
+    <option>Clima</option>
+    <option>Geología</option>
+    <option>Biodiversidad</option>
+  </select>
+  <select id="filterEntidad">
+    <option value="">Entidad</option>
+    <option>UJA</option>
+    <option>MAPA</option>
+    <option>Junta de Andalucía</option>
+    <option>IFAPA</option>
+  </select>
+  <select id="filterNivel">
+    <option value="">Nivel</option>
+    <option value="1">Nivel 1</option>
+    <option value="2">Nivel 2</option>
+    <option value="3">Nivel 3</option>
+    <option value="4">Nivel 4</option>
+  </select>
+</div>
+
+<div class="result-count" id="resultCount"></div>
+
+<div class="card">
+  <div class="table-scroll">
+    <table id="datasetTable">
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>Categoría</th>
+          <th>Entidad</th>
+          <th>Nivel</th>
+          <th>Actualización</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script>
+const datasets = [
+
+  {
+    nombre: "Balance de Nitrógeno",
+    descripcion: "Optimización del balance real de nitrógeno en sistema suelo-cultivo con estimación de lixiviación.",
+    categoria: "Agricultura",
+    entidad: "UJA",
+    fecha: "2026-02-10",
+    nivel: 1
+  },
+
+  {
+    nombre: "Contenido fósforo suelo",
+    descripcion: "Mapa espacial de fósforo asimilable (P-Olsen) y correlación con productividad agrícola.",
+    categoria: "Agricultura",
+    entidad: "MAPA",
+    fecha: "2026-02-11",
+    nivel: 1
+  },
+
+  {
+    nombre: "Modelo erosión hídrica",
+    descripcion: "Riesgo erosivo anual basado en pendiente, cobertura vegetal y precipitación acumulada.",
+    categoria: "Agua",
+    entidad: "Junta de Andalucía",
+    fecha: "2026-01-15",
+    nivel: 2
+  },
+
+  {
+    nombre: "Humedad edáfica satelital",
+    descripcion: "Estimación de humedad superficial mediante Sentinel-1 y Sentinel-2 a 10m de resolución.",
+    categoria: "Agua",
+    entidad: "IFAPA",
+    fecha: "2026-02-12",
+    nivel: 3
+  },
+
+  {
+    nombre: "Capacidad de retención hídrica",
+    descripcion: "Curvas de retención pF y capacidad de campo para diferentes horizontes edáficos.",
+    categoria: "Agua",
+    entidad: "UJA",
+    fecha: "2026-02-03",
+    nivel: 1
+  },
+
+  {
+    nombre: "Captura carbono suelos",
+    descripcion: "Estimación del carbono orgánico del suelo (SOC) mediante análisis multitemporal.",
+    categoria: "Clima",
+    entidad: "MAPA",
+    fecha: "2026-02-01",
+    nivel: 3
+  },
+
+  {
+    nombre: "Temperatura superficial suelo",
+    descripcion: "Serie histórica LST con agregación mensual y detección de anomalías térmicas.",
+    categoria: "Clima",
+    entidad: "Junta de Andalucía",
+    fecha: "2026-02-08",
+    nivel: 2
+  },
+
+  {
+    nombre: "Riesgo desertificación",
+    descripcion: "Índice compuesto de vulnerabilidad climática y presión antrópica.",
+    categoria: "Clima",
+    entidad: "MAPA",
+    fecha: "2026-02-07",
+    nivel: 4
+  },
+
+  {
+    nombre: "Precipitación acumulada anual",
+    descripcion: "Interpolación regional de precipitación anual y estacional.",
+    categoria: "Clima",
+    entidad: "IFAPA",
+    fecha: "2026-02-04",
+    nivel: 1
+  },
+
+  {
+    nombre: "Mapa geológico provincial",
+    descripcion: "Capas vectoriales litológicas y estructuras tectónicas escala 1:50.000.",
+    categoria: "Geología",
+    entidad: "IFAPA",
+    fecha: "2026-02-05",
+    nivel: 2
+  },
+
+  {
+    nombre: "Conductividad eléctrica del suelo",
+    descripcion: "Mapa de salinidad basado en sensores electromagnéticos y análisis geoestadístico.",
+    categoria: "Geología",
+    entidad: "UJA",
+    fecha: "2026-02-06",
+    nivel: 2
+  },
+
+  {
+    nombre: "Uso histórico del suelo",
+    descripcion: "Reconstrucción de uso y cobertura desde 1990 mediante imágenes Landsat.",
+    categoria: "Agricultura",
+    entidad: "MAPA",
+    fecha: "2026-02-09",
+    nivel: 3
+  },
+
+  {
+    nombre: "Compactación del suelo",
+    descripcion: "Mapa de resistencia a penetración y densidad aparente del suelo.",
+    categoria: "Agricultura",
+    entidad: "IFAPA",
+    fecha: "2026-01-30",
+    nivel: 2
+  },
+
+  {
+    nombre: "Biodiversidad microbiana",
+    descripcion: "Índices de diversidad alfa y beta derivados de análisis metagenómico.",
+    categoria: "Biodiversidad",
+    entidad: "UJA",
+    fecha: "2026-01-20",
+    nivel: 4
+  },
+
+  {
+    nombre: "Inventario macrofauna edáfica",
+    descripcion: "Base de datos estructurada de macrofauna del suelo con clasificación taxonómica.",
+    categoria: "Biodiversidad",
+    entidad: "Junta de Andalucía",
+    fecha: "2026-01-25",
+    nivel: 3
+  },
+
+  {
+    nombre: "Índice calidad del suelo",
+    descripcion: "Indicador compuesto basado en propiedades físico-químicas y biológicas.",
+    categoria: "Agricultura",
+    entidad: "UJA",
+    fecha: "2026-02-14",
+    nivel: 2
+  },
+
+  {
+    nombre: "Balance hídrico agrícola",
+    descripcion: "Modelo integrado de entradas y salidas de agua en parcelas agrícolas.",
+    categoria: "Agua",
+    entidad: "IFAPA",
+    fecha: "2026-02-13",
+    nivel: 3
+  },
+
+  {
+    nombre: "Mapa pendientes agrícolas",
+    descripcion: "Modelo digital de elevaciones y cálculo de pendiente media por parcela.",
+    categoria: "Geología",
+    entidad: "Junta de Andalucía",
+    fecha: "2026-02-02",
+    nivel: 1
+  },
+
+  {
+    nombre: "Índice riesgo inundación",
+    descripcion: "Modelo espacial de susceptibilidad a inundación por eventos extremos.",
+    categoria: "Agua",
+    entidad: "MAPA",
+    fecha: "2026-02-06",
+    nivel: 3
+  },
+
+  {
+    nombre: "Emisiones N2O agrícolas",
+    descripcion: "Estimación de emisiones de óxido nitroso asociadas a fertilización.",
+    categoria: "Clima",
+    entidad: "UJA",
+    fecha: "2026-02-15",
+    nivel: 4
+  }
+
+];
+let filteredData=[...datasets];
+
+function renderTable(){
+  const tbody=document.querySelector("#datasetTable tbody");
+  tbody.innerHTML="";
+  filteredData.forEach((ds,index)=>{
+    tbody.innerHTML+=`
+      <tr onclick="goToDataset(${index})">
+        <td>
+          <div class="dataset-name">${ds.nombre}</div>
+          <div class="dataset-desc">${ds.descripcion}</div>
+        </td>
+        <td>${ds.categoria}</td>
+        <td>${ds.entidad}</td>
+        <td><span class="badge level-${ds.nivel}">Nivel ${ds.nivel}</span></td>
+        <td>${ds.fecha}</td>
+      </tr>`;
+  });
+
+  document.getElementById("resultCount").innerText =
+    filteredData.length + " datasets disponibles";
+}
+
+function applyFilters(){
+  const search=document.getElementById("search").value.toLowerCase();
+  const categoria=document.getElementById("filterCategoria").value;
+  const entidad=document.getElementById("filterEntidad").value;
+  const nivel=document.getElementById("filterNivel").value;
+
+  filteredData=datasets.filter(ds=>{
+    return (
+      (ds.nombre.toLowerCase().includes(search) ||
+       ds.descripcion.toLowerCase().includes(search)) &&
+      (categoria==="" || ds.categoria===categoria) &&
+      (entidad==="" || ds.entidad===entidad) &&
+      (nivel==="" || ds.nivel.toString()===nivel)
+    );
+  });
+
+  renderTable();
+}
+
+function goToDataset(index){
+  localStorage.setItem("selectedDataset", JSON.stringify(filteredData[index]));
+  window.location.href="dataset.html";
+}
+
+document.getElementById("search").addEventListener("input",applyFilters);
+document.getElementById("filterCategoria").addEventListener("change",applyFilters);
+document.getElementById("filterEntidad").addEventListener("change",applyFilters);
+document.getElementById("filterNivel").addEventListener("change",applyFilters);
+
+renderTable();
+</script>
+
+</body>
+</html>

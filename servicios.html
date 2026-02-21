@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoilDataSpace · Servicios</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0a2540;
+  --accent:#1b8f6b;
+  --bg:#f4f7f9;
+  --card:#ffffff;
+  --border:#e5e7eb;
+  --muted:#6b7280;
+}
+
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:#1f2937;
+}
+
+/* CABECERA */
+
+.hero{
+  background:white;
+  padding:35px 20px;
+  border-bottom:1px solid var(--border);
+}
+
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+}
+
+.hero h1{
+  font-family:'Montserrat';
+  font-size:1.6rem;
+  margin:0 0 6px 0;
+  color:var(--accent);
+}
+
+.meta-line{
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+/* WRAPPER */
+
+.wrapper{
+  max-width:1200px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+/* INTRO */
+
+.intro-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:25px;
+  margin-bottom:30px;
+}
+
+.section-title{
+  font-family:'Montserrat';
+  font-size:1.05rem;
+  color:var(--primary);
+  margin-bottom:15px;
+}
+
+.intro-card p{
+  font-size:0.9rem;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* SERVICIOS */
+
+.service-card{
+  display:flex;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  margin-bottom:25px;
+}
+
+.service-card img{
+  width:230px;
+  height:160px;
+  object-fit:cover;
+}
+
+.service-content{
+  padding:20px 24px;
+  flex:1;
+}
+
+.service-content h3{
+  font-family:'Montserrat';
+  font-size:1.1rem;
+  margin:0 0 8px 0;
+  color:var(--primary);
+}
+
+.service-content p{
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-bottom:12px;
+  line-height:1.5;
+}
+
+.tag{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:0.7rem;
+  margin-right:6px;
+  background:#e6f4ea;
+}
+
+/* BOTONES */
+
+.primary-button{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 16px;
+  background:linear-gradient(135deg,#1b8f6b,#157a5b);
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+  font-size:0.8rem;
+  font-weight:600;
+  transition:0.25s;
+}
+
+.primary-button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(27,143,107,0.25);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+  .service-card{
+    flex-direction:column;
+  }
+
+  .service-card img{
+    width:100%;
+    height:190px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Servicios disponibles</h1>
+    <div class="meta-line">
+      Servicios digitales operativos del Espacio de Datos Federado de Suelos
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <div class="intro-card">
+    <div class="section-title">Del dato aislado al servicio que aporta conocimiento</div>
+    <p>
+      SoilDataSpace transforma datos agrícolas, edafológicos y climáticos
+      en servicios digitales listos para su uso. Estos servicios permiten
+      optimizar recursos, evaluar riesgos y mejorar la sostenibilidad
+      en la gestión del suelo y del territorio.
+    </p>
+  </div>
+
+  <!-- SERVICIO AGRO -->
+  <div class="service-card">
+    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399" alt="Servicio Agro">
+    <div class="service-content">
+      <h3>Servicio Agro "necesito nombre"</h3>
+      <p>
+        Planificación de fertilización sostenible, gestión eficiente
+        de nutrientes y optimización de insumos agrícolas.
+      </p>
+
+      <div>
+        <span class="tag">API REST</span>
+        <span class="tag">NGSI-LD</span>
+        <span class="tag">GeoJSON</span>
+      </div>
+
+      <a href="servicio-agro.html" class="primary-button">Acceder</a>
+    </div>
+  </div>
+
+  <!-- SERVICIO SUELO -->
+  <div class="service-card">
+    <img src="https://images.unsplash.com/photo-1471879832106-c7ab9e0cee23" alt="Servicio Suelo">
+    <div class="service-content">
+      <h3>Servicio Suelo "necesito nombre" </h3>
+      <p>
+        Evaluación de propiedades del suelo, riesgo erosivo
+        y simulación de escorrentías en parcelas y cuencas.
+      </p>
+
+      <div>
+        <span class="tag">WMS</span>
+        <span class="tag">WFS</span>
+        <span class="tag">FIWARE</span>
+      </div>
+
+      <a href="servicio-suelo.html" class="primary-button">Acceder</a>
+    </div>
+  </div>
+
+  <!-- SERVICIO CLIMA -->
+  <div class="service-card">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Servicio Clima">
+    <div class="service-content">
+      <h3>Servicio Clima "necesito nombre"</h3>
+      <p>
+        Balance de carbono en el suelo, huella climática
+        y análisis de variables meteorológicas históricas.
+      </p>
+
+      <div>
+        <span class="tag">JSON</span>
+        <span class="tag">NetCDF</span>
+        <span class="tag">Copernicus</span>
+      </div>
+
+      <a href="servicio-clima.html" class="primary-button">Acceder</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

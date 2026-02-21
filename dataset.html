@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoilDataSpace · Dataset</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0a2540;
+  --accent:#1b8f6b;
+  --bg:#f4f7f9;
+  --card:#ffffff;
+  --border:#e5e7eb;
+  --muted:#6b7280;
+}
+
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:#1f2937;
+}
+
+/* CABECERA */
+
+.hero{
+  background:white;
+  padding:35px 20px;
+  border-bottom:1px solid var(--border);
+}
+
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+}
+
+.hero h1{
+  font-family:'Montserrat';
+  font-size:1.6rem;
+  margin:0 0 8px 0;
+  color:var(--accent);
+}
+
+.meta-line{
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:0.7rem;
+  margin-right:8px;
+}
+
+.level-1{ background:#e6f4ea; }
+.level-2{ background:#fff8e1; }
+.level-3{ background:#fdecea; }
+.level-4{ background:#f3e5f5; }
+
+/* LAYOUT */
+
+.wrapper{
+  max-width:1200px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:40px;
+}
+
+.card{
+  background:var(--card);
+  padding:25px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  margin-bottom:30px;
+}
+
+.section-title{
+  font-family:'Montserrat';
+  font-size:1.05rem;
+  color:var(--primary);
+  margin-bottom:15px;
+}
+
+/* TABLA RECURSOS */
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:0.85rem;
+}
+
+th, td{
+  padding:10px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+}
+
+th{
+  font-size:0.75rem;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* PANEL ACCESO */
+
+.access-box{
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:10px;
+  background:#fafafa;
+  font-size:0.85rem;
+}
+
+.primary-button{
+  display:block;
+  margin-top:20px;
+  padding:14px;
+  text-align:center;
+  background:linear-gradient(135deg,#1b8f6b,#157a5b);
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  font-size:0.9rem;
+  font-weight:600;
+  transition:0.25s;
+  box-shadow:0 6px 18px rgba(27,143,107,0.25);
+}
+
+.primary-button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(27,143,107,0.35);
+}
+
+.secondary-button{
+  display:block;
+  margin-top:12px;
+  padding:10px;
+  text-align:center;
+  background:#eef2f7;
+  color:#1f2937;
+  text-decoration:none;
+  border-radius:6px;
+  font-size:0.8rem;
+  transition:0.2s;
+}
+
+.secondary-button:hover{
+  background:#e2e8f0;
+}
+
+@media(max-width:950px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1 id="datasetTitle"></h1>
+    <div class="meta-line">
+      <span id="badgeNivel" class="badge"></span>
+      Dataset geoespacial · 
+      Actualizado <span id="datasetFecha"></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+<div class="grid">
+
+<!-- IZQUIERDA -->
+<div>
+
+<div class="card">
+  <div class="section-title">Resumen</div>
+  <p id="datasetDescription"></p>
+</div>
+
+<div class="card">
+  <div class="section-title">Recursos disponibles</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Formato</th>
+        <th>Acceso</th>
+        <th>Tamaño</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Base de datos</td>
+        <td>CSV</td>
+        <td>Nivel 1</td>
+        <td>120 MB</td>
+      </tr>
+      <tr>
+        <td>Servicio WMS</td>
+        <td>API</td>
+        <td>Nivel 2</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>Raster cartográfico</td>
+        <td>GeoTIFF</td>
+        <td>Nivel 2</td>
+        <td>1.2 GB</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="section-title">Metadatos técnicos</div>
+  <p><strong>Proveedor:</strong> <span id="datasetEntidad"></span></p>
+  <p><strong>Cobertura geográfica:</strong> España</p>
+  <p><strong>Resolución espacial:</strong> 100m</p>
+  <p><strong>Sistema de referencia:</strong> ETRS89 / UTM</p>
+  <p><strong>Periodicidad:</strong> Anual</p>
+  <p><strong>Identificador:</strong> SDS-ES-2026-001</p>
+</div>
+
+<div class="card">
+  <div class="section-title">Gobernanza y políticas</div>
+  <p>Este dataset forma parte del Espacio de Datos Federado de Suelos (SoilDataSpace).</p>
+  <p>Acceso controlado según nivel de seguridad y políticas de uso.</p>
+  <p>Licencia: CC-BY 4.0</p>
+</div>
+
+</div>
+
+<!-- DERECHA -->
+<div>
+
+<div class="access-box">
+
+  <div style="margin-bottom:15px;">
+    <strong>Nivel de acceso</strong>
+    <div id="accessText" style="margin-top:5px;"></div>
+  </div>
+
+  <div style="margin-bottom:15px;">
+    <strong>Estado del servicio</strong>
+    <div style="color:#1b8f6b; margin-top:5px;">🟢 Activo</div>
+  </div>
+
+
+
+  <a href="#"
+     class="secondary-button">
+     Solicitar acceso
+  </a>
+
+</div>
+
+<div class="card">
+  <div class="section-title">Servicios relacionados</div>
+  <p>• Visualizador web interactivo</p>
+  <p>• API REST NGSI-LD</p>
+  <p>• Servicio interoperable FIWARE</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+const dataset = JSON.parse(localStorage.getItem("selectedDataset"));
+
+if(dataset){
+
+  document.getElementById("datasetTitle").innerText = dataset.nombre;
+  document.getElementById("datasetDescription").innerText = dataset.descripcion;
+  document.getElementById("datasetEntidad").innerText = dataset.entidad;
+  document.getElementById("datasetFecha").innerText = dataset.fecha;
+
+  const badge = document.getElementById("badgeNivel");
+  badge.innerText = "Nivel " + dataset.nivel;
+  badge.classList.add("level-" + dataset.nivel);
+
+  const accessText = document.getElementById("accessText");
+
+  if(dataset.nivel == 1){
+    accessText.innerText = "Acceso abierto y descarga directa.";
+  }
+  if(dataset.nivel == 2){
+    accessText.innerText = "Requiere autenticación en el espacio de datos.";
+  }
+  if(dataset.nivel == 3){
+    accessText.innerText = "Requiere contrato y validación.";
+  }
+  if(dataset.nivel == 4){
+    accessText.innerText = "Acceso restringido por sensibilidad.";
+  }
+
+}
+
+</script>
+
+</body>
+</html>
