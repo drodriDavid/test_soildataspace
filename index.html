@@ -123,7 +123,8 @@
   .uc i{width:10px;height:10px;border-radius:50%;background:var(--dc);flex:none}
   .uc b{font-weight:700;color:var(--ink)}
   .combina{display:flex;flex-direction:column;gap:7px}
-  .cmb{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;color:var(--ink);background:#fff;border:1px solid var(--slate-200);border-radius:999px;padding:4px 13px 4px 5px}
+  .cmb{display:flex;align-items:center;gap:10px;font-size:.8rem;font-weight:500;color:var(--slate-600);background:var(--slate-50);border:1px solid var(--slate-100);border-radius:11px;padding:7px 12px 7px 7px}
+  .cmb b{color:var(--ink);font-weight:800;margin-right:3px}
   .cmb .ci{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--dc) 16%,#fff);color:var(--dc);flex:none}
   .cmb .ci svg{width:16px;height:16px}
   .cta{background:linear-gradient(120deg,#062b22,#06283d 60%,#041726);color:#fff;position:relative;overflow:hidden}
@@ -354,7 +355,7 @@
         <div class="abody">
           <div class="ahead"><span class="aic"><svg><use href="#i-crop"/></svg></span><div><h3>Recomendación de fertilización</h3><span class="afr">Dosis a la medida</span></div></div>
           <div class="uselbl">Combina los datos</div>
-          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span>Edafológicos</span><span class="cmb" style="--dc:#5a8a2e"><span class="ci"><svg><use href="#i-crop"/></svg></span>Agronómicos</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span><span><b>Edafológicos</b>carbono orgánico, pH, nutrientes</span></span><span class="cmb" style="--dc:#5a8a2e"><span class="ci"><svg><use href="#i-crop"/></svg></span><span><b>Agronómicos</b>fertilización, rendimiento</span></span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span><span><b>Productos derivados</b>mapa de pH</span></span></div>
         </div>
       </article>
       <article class="acard reveal">
@@ -362,7 +363,7 @@
         <div class="abody">
           <div class="ahead"><span class="aic"><svg><use href="#i-water"/></svg></span><div><h3>Riego de precisión</h3><span class="afr">Cada gota cuenta</span></div></div>
           <div class="uselbl">Combina los datos</div>
-          <div class="combina"><span class="cmb" style="--dc:#2f86c4"><span class="ci"><svg><use href="#i-water"/></svg></span>Hidrológicos</span><span class="cmb" style="--dc:#d98a1f"><span class="ci"><svg><use href="#i-clima"/></svg></span>Climáticos</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+          <div class="combina"><span class="cmb" style="--dc:#2f86c4"><span class="ci"><svg><use href="#i-water"/></svg></span><span><b>Hidrológicos</b>humedad del suelo, agua aplicada</span></span><span class="cmb" style="--dc:#d98a1f"><span class="ci"><svg><use href="#i-clima"/></svg></span><span><b>Climáticos</b>precipitación, evapotranspiración</span></span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span><span><b>Productos derivados</b>mapa de humedad</span></span></div>
         </div>
       </article>
       <article class="acard reveal">
@@ -370,7 +371,7 @@
         <div class="abody">
           <div class="ahead"><span class="aic"><svg><use href="#i-layers"/></svg></span><div><h3>Manejo por zonas</h3><span class="afr">Actúa donde hace falta</span></div></div>
           <div class="uselbl">Combina los datos</div>
-          <div class="combina"><span class="cmb" style="--dc:#5b6470"><span class="ci"><svg><use href="#s-drone"/></svg></span>Vuelos con dron</span><span class="cmb" style="--dc:#3b5bdb"><span class="ci"><svg><use href="#s-sat"/></svg></span>Satélite</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+          <div class="combina"><span class="cmb" style="--dc:#5b6470"><span class="ci"><svg><use href="#s-drone"/></svg></span><span><b>Vuelos con dron</b>NDVI, multiespectral, térmico</span></span><span class="cmb" style="--dc:#3b5bdb"><span class="ci"><svg><use href="#s-sat"/></svg></span><span><b>Satélite</b>Sentinel‑2, NDVI</span></span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span><span><b>Productos derivados</b>mapas de vigor</span></span></div>
         </div>
       </article>
       <article class="acard reveal">
@@ -378,7 +379,7 @@
         <div class="abody">
           <div class="ahead"><span class="aic"><svg><use href="#s-leaf"/></svg></span><div><h3>Carbono y sostenibilidad</h3><span class="afr">Carbono que suma</span></div></div>
           <div class="uselbl">Combina los datos</div>
-          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span>Edafológicos</span><span class="cmb" style="--dc:#d98a1f"><span class="ci"><svg><use href="#i-clima"/></svg></span>Climáticos</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span><span><b>Edafológicos</b>carbono orgánico del suelo</span></span><span class="cmb" style="--dc:#d98a1f"><span class="ci"><svg><use href="#i-clima"/></svg></span><span><b>Climáticos</b>biomasa, carbono</span></span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span><span><b>Productos derivados</b>stock y secuestro de C</span></span></div>
         </div>
       </article>
       <article class="acard reveal">
@@ -386,7 +387,7 @@
         <div class="abody">
           <div class="ahead"><span class="aic"><svg><use href="#i-soil"/></svg></span><div><h3>Riesgo de erosión e hídrico</h3><span class="afr">Anticipa la erosión</span></div></div>
           <div class="uselbl">Combina los datos</div>
-          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span>Edafológicos</span><span class="cmb" style="--dc:#10b981"><span class="ci"><svg><use href="#i-pin"/></svg></span>Geoespaciales</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span><span><b>Edafológicos</b>textura, conductividad hidráulica</span></span><span class="cmb" style="--dc:#10b981"><span class="ci"><svg><use href="#i-pin"/></svg></span><span><b>Geoespaciales</b>pendiente, DEM</span></span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span><span><b>Productos derivados</b>erosión (RUSLE)</span></span></div>
         </div>
       </article>
       <article class="acard reveal">
@@ -394,7 +395,7 @@
         <div class="abody">
           <div class="ahead"><span class="aic"><svg><use href="#i-pin"/></svg></span><div><h3>Trazabilidad y cuaderno digital</h3><span class="afr">Todo trazado</span></div></div>
           <div class="uselbl">Combina los datos</div>
-          <div class="combina"><span class="cmb" style="--dc:#10b981"><span class="ci"><svg><use href="#i-pin"/></svg></span>Geoespaciales</span><span class="cmb" style="--dc:#5a8a2e"><span class="ci"><svg><use href="#i-crop"/></svg></span>Agronómicos</span></div>
+          <div class="combina"><span class="cmb" style="--dc:#10b981"><span class="ci"><svg><use href="#i-pin"/></svg></span><span><b>Geoespaciales</b>parcela, catastro, coordenadas</span></span><span class="cmb" style="--dc:#5a8a2e"><span class="ci"><svg><use href="#i-crop"/></svg></span><span><b>Agronómicos</b>manejo, campaña</span></span></div>
         </div>
       </article>
     </div>
