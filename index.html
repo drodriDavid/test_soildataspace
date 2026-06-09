@@ -98,6 +98,7 @@
   @media(max-width:760px){.appsband{background-attachment:scroll;min-height:38vh}}
   .apps{display:flex;flex-direction:column;gap:20px}
   .acard{background:#fff;border:1px solid var(--slate-100);border-radius:20px;overflow:hidden;box-shadow:0 14px 32px -22px rgba(15,42,35,.6);display:grid;grid-template-columns:200px minmax(0,1fr)}
+  .acard:nth-child(even){grid-template-columns:minmax(0,1fr) 200px}
   .acard:nth-child(even) .aimg{order:2}
   .acard .aimg{min-height:170px;overflow:hidden}
   .acard .aimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
@@ -108,7 +109,7 @@
   .acard .aic svg{width:26px;height:26px}
   .acard h3{font-size:1.05rem;color:var(--ink);font-weight:800;line-height:1.15}
   .acard .afr{font-size:.8rem;color:var(--slate-500);font-weight:500}
-  @media(max-width:680px){.acard{grid-template-columns:1fr}.acard .aimg{min-height:180px}.acard:nth-child(even) .aimg{order:0}}
+  @media(max-width:680px){.acard,.acard:nth-child(even){grid-template-columns:1fr}.acard .aimg{min-height:180px}.acard:nth-child(even) .aimg{order:0}}
   .swipe{text-align:center;color:var(--slate-500);font-size:.82rem;font-weight:600;margin-bottom:14px;letter-spacing:.02em}
   .appcard{background:#fff;border:1px solid var(--slate-100);border-radius:18px;padding:22px;box-shadow:0 10px 26px -18px rgba(15,42,35,.5);transition:transform .18s,box-shadow .18s}
   .appcard:hover{transform:translateY(-4px);box-shadow:0 22px 40px -22px rgba(15,42,35,.5)}
