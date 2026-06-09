@@ -59,15 +59,15 @@
   .card{position:relative;background:#fff;border:1px solid var(--slate-100);border-radius:20px;padding:24px 24px 20px;box-shadow:0 10px 26px -18px rgba(15,42,35,.5);overflow:hidden;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
   .card:hover{transform:translateY(-5px);box-shadow:0 24px 44px -22px rgba(15,42,35,.5)}
   .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);z-index:2}
-  .card .ph{margin:-24px -24px 14px;height:152px;overflow:hidden;position:relative}
+  .card .ph{margin:-24px -24px 14px;height:120px;overflow:hidden;position:relative}
   .card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s}
   .card:hover .ph img{transform:scale(1.07)}
   .card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,26,17,.95) 8%,rgba(7,26,17,.34) 54%,rgba(7,26,17,.04))}
   .card .ph .ic{position:absolute;top:13px;left:13px;z-index:3;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.55);color:var(--emerald-600);box-shadow:0 8px 16px -8px rgba(0,0,0,.5)}
   .card .ph .ic svg{width:25px;height:25px}
   .card .ph .cap{position:absolute;left:18px;right:16px;bottom:14px;z-index:3}
-  .card .ph h3{color:#fff;font-size:1.4rem;font-weight:800;letter-spacing:-.015em;line-height:1.1;text-shadow:0 2px 18px rgba(0,0,0,.62)}
-  .card .ph .tag{display:block;margin-top:4px;color:rgba(255,255,255,.92);font-size:.9rem;font-weight:500;line-height:1.25;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+  .card .ph h3{color:#fff;font-size:1.18rem;font-weight:800;letter-spacing:-.015em;line-height:1.08;text-shadow:0 2px 18px rgba(0,0,0,.62)}
+  .card .ph .tag{display:block;margin-top:3px;color:rgba(255,255,255,.92);font-size:.76rem;font-weight:500;line-height:1.2;text-shadow:0 1px 10px rgba(0,0,0,.6)}
   .card .meta2{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 12px}
   .card .meta2 .srcs{display:inline-flex;gap:7px;align-items:center}
   .card .meta2 .srcs svg{width:20px;height:20px;color:var(--emerald-600)}
@@ -194,6 +194,8 @@
           <li>Carbono orgánico y materia orgánica <em>(%)</em></li>
           <li>pH, salinidad y CIC <em>(cmol/kg)</em></li>
           <li>Densidad aparente <em>(g/cm³)</em></li>
+          <li>Fósforo (Olsen) y potasio <em>(mg/kg)</em></li>
+          <li>Capacidad de campo y conductividad hidráulica</li>
           <li>Mapas de suelo <em>(SoilGrids ~250 m)</em></li>
         </ul>
         <div class="divider"></div><div class="lbl">Aplicaciones</div>
@@ -209,6 +211,8 @@
           <li>Humedad del suelo <em>(% · m³/m³)</em></li>
           <li>Capacidad de campo y conductividad hidráulica</li>
           <li>Calidad del agua <em>(N, mg/L)</em></li>
+          <li>Saturación y riesgo de lixiviación</li>
+          <li>Series temporales de seguimiento</li>
           <li>Mapas de humedad <em>(Sentinel‑1 SAR ~10 m)</em></li>
         </ul>
         <div class="divider"></div><div class="lbl">Aplicaciones</div>
@@ -224,6 +228,8 @@
           <li>Densidad arbórea y marco <em>(árboles/ha)</em></li>
           <li>Poda, laboreo y cubierta vegetal</li>
           <li>Fertilización y enmiendas <em>(kg N/ha)</em></li>
+          <li>Marco de plantación y nº de labores</li>
+          <li>Enmiendas orgánicas y sistema de manejo</li>
           <li>Rendimiento <em>(kg/ha)</em></li>
         </ul>
         <div class="divider"></div><div class="lbl">Aplicaciones</div>
@@ -239,6 +245,8 @@
           <li>Temperatura media mensual <em>(°C)</em></li>
           <li>Evapotranspiración potencial <em>(mm)</em></li>
           <li>Temp. superficial LST <em>(Sentinel‑3 ~1 km)</em></li>
+          <li>Deposición atmosférica de nitrógeno</li>
+          <li>Series climáticas de los últimos 30 años</li>
           <li>Carbono y biomasa <em>(t C/ha · NDVI)</em></li>
         </ul>
         <div class="divider"></div><div class="lbl">Aplicaciones</div>
@@ -253,6 +261,8 @@
           <li>Ortomosaico RGB, multiespectral y térmico <em>(cm/píxel)</em></li>
           <li>Modelos 3D LiDAR y fotogramétricos <em>(LAZ/PLY)</em></li>
           <li>Hipercubo hiperespectral</li>
+          <li>Nube de puntos y modelo de elevaciones</li>
+          <li>Mapas de vigor y estrés del cultivo</li>
           <li>Mapas de índices de vegetación <em>(GeoTIFF)</em></li>
         </ul>
         <div class="divider"></div><div class="lbl">Aplicaciones</div>
@@ -268,6 +278,8 @@
           <li>Sentinel‑1 SAR — radar <em>(~10 m)</em></li>
           <li>Sentinel‑3 LST y pancromática</li>
           <li>Modelo de elevaciones DEM <em>(m)</em></li>
+          <li>Índices de vegetación <em>(NDVI, NDRE)</em></li>
+          <li>Mapas de humedad del suelo</li>
           <li>Cobertura y uso del suelo</li>
         </ul>
         <div class="divider"></div><div class="lbl">Aplicaciones</div>
@@ -283,6 +295,8 @@
           <li>Coordenadas X/Y <em>(UTM 30N)</em></li>
           <li>Referencia catastral <em>(SIGPAC)</em></li>
           <li>Municipio, provincia y CCAA</li>
+          <li>Vértices y límites de la parcela</li>
+          <li>País y formato <em>(shape · GeoPackage)</em></li>
           <li>Superficie <em>(ha)</em> y modelo de elevaciones</li>
         </ul>
         <div class="divider"></div><div class="lbl">Aplicaciones</div>
@@ -298,6 +312,8 @@
           <li>Mapas de humedad del suelo</li>
           <li>Pérdida de suelo y erosión <em>(RUSLE, t/ha·año)</em></li>
           <li>Stock y secuestro de carbono <em>(t C/ha)</em></li>
+          <li>Mapas de arcilla, limo y arena <em>(%)</em></li>
+          <li>Densidad aparente <em>(g/cm³)</em></li>
           <li>Clase textural, pH y salinidad <em>(GeoTIFF)</em></li>
         </ul>
         <div class="divider"></div><div class="lbl">Aplicaciones</div>
