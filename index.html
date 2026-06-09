@@ -1,212 +1,410 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SoilDataSpace · Portal de Acceso</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tipos de datos · Soil DataSpace</title>
+<meta name="description" content="Qué datos alberga el Espacio de Datos Federado de Suelos (SoilDataSpace) y sus aplicaciones: edafológicos, hidrológicos, agronómicos, climáticos, carbono, dron, satélite y geoespaciales." />
+<meta name="theme-color" content="#059669" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --primary:#0a2540;
-  --accent:#1b8f6b;
-  --bg:#f4f7f9;
-  --card:#ffffff;
-  --border:#e5e7eb;
-  --muted:#6b7280;
-}
+  :root{
+    --emerald-700:#047857;--emerald-600:#059669;--emerald-500:#10b981;--emerald-50:#ecfdf5;
+    --cyan-600:#0891b2;--cyan-500:#06b6d4;
+    --ink:#0f2a23;--slate-700:#334155;--slate-600:#475569;--slate-500:#64748b;--slate-400:#94a3b8;--slate-200:#e2e8f0;--slate-100:#f1f5f9;--slate-50:#f8fafc;
+    --grad:linear-gradient(100deg,var(--emerald-600),var(--cyan-600));
+    --grad-soft:linear-gradient(135deg,#ecfdf5,#fff 50%,#ecfeff);
+    --shadow:0 10px 30px -12px rgba(6,95,70,.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--slate-700);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  svg{display:block}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-body{
-  margin:0;
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:#1f2937;
-}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--slate-100)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:20px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .logo{width:42px;height:42px;border-radius:50%;background:conic-gradient(from 200deg,#34d399,#06b6d4,#3b82f6,#10b981);position:relative;box-shadow:0 4px 14px rgba(6,182,212,.35);flex:none}
+  .logo::after{content:"";position:absolute;inset:7px;border-radius:50% 50% 50% 0;background:linear-gradient(160deg,#059669,#0891b2);transform:rotate(45deg)}
+  .brand b{font-size:1.18rem;font-weight:800;color:var(--ink);display:block;line-height:1.1;letter-spacing:-.01em}
+  .brand span{font-size:.7rem;color:var(--slate-500);font-weight:500}
+  nav ul{display:flex;gap:24px;list-style:none;font-weight:500;font-size:.92rem;color:var(--slate-600)}
+  nav a:hover{color:var(--emerald-600)} nav .on{color:var(--emerald-700);font-weight:700}
+  .login{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;font-weight:600;padding:9px 18px;border-radius:10px;font-size:.88rem;box-shadow:0 6px 18px -6px rgba(8,145,178,.5)}
+  @media(max-width:980px){nav ul{display:none}.brand span{display:none}}
 
-/* CABECERA SUPERIOR */
+  .hero{position:relative;background:var(--grad-soft);overflow:hidden;border-bottom:1px solid var(--slate-100)}
+  .blob{position:absolute;border-radius:50%;filter:blur(10px);opacity:.5;pointer-events:none}
+  .b1{width:200px;height:200px;background:#a7f3d0;top:50px;left:-40px}
+  .b2{width:240px;height:240px;background:#bae6fd;top:120px;right:-50px}
+  .hero .in{position:relative;z-index:2;text-align:center;padding:54px 0 46px}
+  .crumb{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--slate-200);color:var(--emerald-700);font-weight:600;font-size:.78rem;padding:6px 14px;border-radius:999px;box-shadow:var(--shadow)}
+  .hero h1{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:900;color:var(--ink);letter-spacing:-.03em;line-height:1.05;margin:16px 0 12px}
+  .hero p{color:var(--slate-600);font-size:1.08rem;max-width:62ch;margin:0 auto}
 
-.hero{
-  background:white;
-  padding:50px 20px;
-  border-bottom:1px solid var(--border);
-  text-align:center;
-}
+  section{padding:60px 0}
+  .shead{text-align:center;max-width:680px;margin:0 auto 36px}
+  .eyebrow{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.76rem;color:var(--cyan-600)}
+  h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:var(--ink);letter-spacing:-.02em;margin:8px 0 8px}
+  .shead p{color:var(--slate-600);font-size:1rem}
 
-.hero h1{
-  font-family:'Montserrat';
-  font-size:1.9rem;
-  color:var(--primary);
-  margin-bottom:15px;
-}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.cards{grid-template-columns:1fr}}
+  .card{position:relative;background:#fff;border:1px solid var(--slate-100);border-radius:20px;padding:24px 24px 20px;box-shadow:0 10px 26px -18px rgba(15,42,35,.5);overflow:hidden;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-5px);box-shadow:0 24px 44px -22px rgba(15,42,35,.5)}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);z-index:2}
+  .card .ph{margin:-24px -24px 14px;height:152px;overflow:hidden;position:relative}
+  .card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s}
+  .card:hover .ph img{transform:scale(1.07)}
+  .card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,26,17,.95) 8%,rgba(7,26,17,.34) 54%,rgba(7,26,17,.04))}
+  .card .ph .ic{position:absolute;top:13px;left:13px;z-index:3;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.55);color:var(--emerald-600);box-shadow:0 8px 16px -8px rgba(0,0,0,.5)}
+  .card .ph .ic svg{width:25px;height:25px}
+  .card .ph .cap{position:absolute;left:18px;right:16px;bottom:14px;z-index:3}
+  .card .ph h3{color:#fff;font-size:1.4rem;font-weight:800;letter-spacing:-.015em;line-height:1.1;text-shadow:0 2px 18px rgba(0,0,0,.62)}
+  .card .ph .tag{display:block;margin-top:4px;color:rgba(255,255,255,.92);font-size:.9rem;font-weight:500;line-height:1.25;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+  .card .meta2{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 12px}
+  .card .meta2 .srcs{display:inline-flex;gap:7px;align-items:center}
+  .card .meta2 .srcs svg{width:20px;height:20px;color:var(--emerald-600)}
+  .card .meta2 .sep{width:1px;height:15px;background:var(--slate-200)}
+  .card .fmt-tag{font-size:.66rem;font-weight:700;color:var(--slate-600);background:var(--slate-100);border:1px solid var(--slate-200);border-radius:7px;padding:3px 8px;letter-spacing:.02em}
+  .lbl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-500);margin:0 0 9px}
+  .det{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .det li{position:relative;padding-left:18px;font-size:.87rem;color:var(--slate-700);line-height:1.4}
+  .det li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--emerald-500)}
+  .det em{font-style:normal;color:var(--slate-500);font-size:.79rem}
+  .divider{height:1px;background:var(--slate-100);margin:auto 0 14px}
+  .use{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .use li{position:relative;padding-left:24px;font-size:.88rem;color:var(--slate-700)}
+  .use li svg{position:absolute;left:0;top:1px;width:17px;height:17px;color:var(--emerald-500)}
 
-.hero p{
-  max-width:800px;
-  margin:auto;
-  font-size:0.95rem;
-  color:var(--muted);
-}
+  .srcwrap{background:var(--grad-soft);border-top:1px solid var(--slate-100);border-bottom:1px solid var(--slate-100)}
+  .srcbar{display:flex;align-items:center;gap:16px 26px;flex-wrap:wrap;justify-content:center;padding:28px 0}
+  .srcbar .t{font-weight:800;color:var(--ink);font-size:1rem}
+  .src{display:inline-flex;align-items:center;gap:9px;font-size:.9rem;font-weight:600;color:var(--slate-700)}
+  .src svg{width:24px;height:24px;color:var(--emerald-600)}
 
-/* SECCIONES */
+  .appsband{position:relative;min-height:44vh;display:grid;place-items:center;text-align:center;color:#fff;background:url('assets/band-fields.jpg') center/cover;background-attachment:fixed}
+  .appsband::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(4,28,18,.55),rgba(4,30,40,.68))}
+  .appsband .in{position:relative;z-index:2;padding:64px 24px;max-width:780px}
+  .appsband .eyebrow{color:#a7f3d0}
+  .appsband h2{color:#fff;font-size:clamp(1.7rem,3.6vw,2.6rem);text-shadow:0 3px 24px rgba(0,0,0,.45)}
+  .appsband p{color:#e9f3ee;margin:12px auto 0;max-width:580px;font-size:1.05rem}
+  @media(max-width:760px){.appsband{background-attachment:scroll;min-height:38vh}}
+  .apps{display:flex;flex-direction:column;gap:20px}
+  .acard{background:#fff;border:1px solid var(--slate-100);border-radius:20px;overflow:hidden;box-shadow:0 14px 32px -22px rgba(15,42,35,.6);display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr)}
+  .acard:nth-child(even) .aimg{order:2}
+  .acard .aimg{min-height:210px;overflow:hidden}
+  .acard .aimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .acard:hover .aimg img{transform:scale(1.06)}
+  .acard .abody{padding:24px 30px;display:flex;flex-direction:column;justify-content:center}
+  .acard .ahead{display:flex;gap:12px;align-items:center;margin-bottom:15px}
+  .acard .aic{width:46px;height:46px;flex:none;border-radius:13px;display:grid;place-items:center;background:var(--emerald-50);border:1px solid #d1fae5;color:var(--emerald-600)}
+  .acard .aic svg{width:26px;height:26px}
+  .acard h3{font-size:1.05rem;color:var(--ink);font-weight:800;line-height:1.15}
+  .acard .afr{font-size:.8rem;color:var(--slate-500);font-weight:500}
+  @media(max-width:680px){.acard{grid-template-columns:1fr}.acard .aimg{min-height:180px}.acard:nth-child(even) .aimg{order:0}}
+  .swipe{text-align:center;color:var(--slate-500);font-size:.82rem;font-weight:600;margin-bottom:14px;letter-spacing:.02em}
+  .appcard{background:#fff;border:1px solid var(--slate-100);border-radius:18px;padding:22px;box-shadow:0 10px 26px -18px rgba(15,42,35,.5);transition:transform .18s,box-shadow .18s}
+  .appcard:hover{transform:translateY(-4px);box-shadow:0 22px 40px -22px rgba(15,42,35,.5)}
+  .appcard .ai{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:var(--emerald-50);border:1px solid #d1fae5;color:var(--emerald-600);margin-bottom:13px}
+  .appcard .ai svg{width:26px;height:26px}
+  .appcard h4{font-size:1.05rem;color:var(--ink);font-weight:800;margin-bottom:5px}
+  .appcard p{font-size:.9rem;color:var(--slate-600)}
+  .uselbl{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-500);margin:15px 0 9px;display:flex;align-items:center;gap:8px}
+  .uselbl::after{content:"";flex:1;height:1px;background:var(--slate-100)}
+  .usechips{display:flex;flex-direction:column;gap:7px}
+  .uc{display:inline-flex;align-items:center;gap:9px;font-size:.81rem;color:var(--slate-700);background:var(--slate-50);border:1px solid var(--slate-100);border-radius:9px;padding:6px 11px}
+  .uc i{width:10px;height:10px;border-radius:50%;background:var(--dc);flex:none}
+  .uc b{font-weight:700;color:var(--ink)}
+  .combina{display:flex;flex-direction:column;gap:7px}
+  .cmb{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;color:var(--ink);background:#fff;border:1px solid var(--slate-200);border-radius:999px;padding:4px 13px 4px 5px}
+  .cmb .ci{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--dc) 16%,#fff);color:var(--dc);flex:none}
+  .cmb .ci svg{width:16px;height:16px}
+  .cta{background:linear-gradient(120deg,#062b22,#06283d 60%,#041726);color:#fff;position:relative;overflow:hidden}
+  .cta::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 82% 16%,rgba(16,185,129,.2),transparent 60%)}
+  .cta .in{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+  .cta h2{color:#fff} .cta p{color:#cbd5e1;max-width:560px;margin-top:6px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;font-weight:700;padding:13px 26px;border-radius:12px;font-size:.95rem;white-space:nowrap;box-shadow:0 10px 26px -8px rgba(8,145,178,.6)}
 
-.section{
-  max-width:1200px;
-  margin:60px auto;
-  padding:0 20px;
-}
-
-.section h2{
-  font-family:'Montserrat';
-  font-size:1.2rem;
-  color:var(--primary);
-  margin-bottom:20px;
-}
-
-/* CARDS */
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:30px;
-}
-
-.card{
-  background:var(--card);
-  padding:30px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  transition:0.25s;
-  cursor:pointer;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 28px rgba(0,0,0,0.06);
-}
-
-.card h3{
-  font-family:'Montserrat';
-  margin-top:0;
-  color:var(--primary);
-  font-size:1rem;
-}
-
-.card p{
-  font-size:0.9rem;
-  color:var(--muted);
-  line-height:1.5;
-}
-
-.button{
-  display:inline-block;
-  margin-top:18px;
-  padding:10px 16px;
-  border-radius:6px;
-  background:var(--accent);
-  color:white;
-  font-size:0.8rem;
-  text-decoration:none;
-}
-
-/* FOOTER */
-
-.footer{
-  text-align:center;
-  padding:40px;
-  font-size:0.8rem;
-  color:var(--muted);
-  border-top:1px solid var(--border);
-  margin-top:60px;
-}
+  footer{background:#04121d;color:#94a3b8;padding:30px 0;font-size:.84rem}
+  .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer b{color:#e2e8f0}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s}
+  .reveal.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-soil" viewBox="0 0 24 24"><path d="M12 13V7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M12 9.5C12 6 15.5 4.5 18 4.5 18 8 14.5 9.5 12 9.5Z" fill="currentColor"/><path d="M12 11C12 8 8.5 6.8 6 6.8 6 10 9.5 11 12 11Z" fill="currentColor" opacity=".8"/><path d="M4 15.5q8-3 16 0v1.4q-8 3-16 0z" fill="currentColor" opacity=".55"/><path d="M4 18.5q8-3 16 0V20q-8 3-16 0z" fill="currentColor" opacity=".35"/></symbol>
+  <symbol id="i-water" viewBox="0 0 24 24"><path d="M12 3s7 8 7 12.5A7 7 0 0 1 5 15.5C5 11 12 3 12 3z" fill="currentColor"/><path d="M9 15.5a3 3 0 0 0 3 3" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="i-crop" viewBox="0 0 24 24"><path d="M12 21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 12C12 7 17 5 20 5 20 11 15 12 12 12Z" fill="currentColor"/><path d="M12 15C12 11 7 9 4 9 4 14 9 15 12 15Z" fill="currentColor" opacity=".75"/></symbol>
+  <symbol id="i-clima" viewBox="0 0 24 24"><circle cx="17" cy="7.5" r="3" fill="currentColor" opacity=".75"/><path d="M7 16a4 4 0 0 1 .4-8 5 5 0 0 1 9.5 1.3A3.6 3.6 0 0 1 16.5 16Z" fill="currentColor"/><path d="M8 19l-1 2M12 19l-1 2M16 19l-1 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-7.5 7-13A7 7 0 0 0 5 9c0 5.5 7 13 7 13z" fill="currentColor"/><circle cx="12" cy="9" r="2.6" fill="#fff"/></symbol>
+  <symbol id="chk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity=".15"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="s-leaf" viewBox="0 0 24 24"><path d="M12 22s-1-6 3-10 6-3 6-3-1 6-5 9c-2.5 1.9-4 4-4 4z" fill="currentColor"/></symbol>
+  <symbol id="s-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-4 8a2 2 0 0 0 1.8 3h8.4A2 2 0 0 0 18 17l-4-8V3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="s-wifi" viewBox="0 0 24 24"><path d="M5 9a10 10 0 0 1 14 0M8 12.5a6 6 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></symbol>
+  <symbol id="s-map" viewBox="0 0 24 24"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="s-drone" viewBox="0 0 24 24"><rect x="10" y="10" width="4" height="4" rx="1" fill="currentColor"/><path d="M8 8 5.5 5.5M16 8l2.5-2.5M8 16l-2.5 2.5M16 16l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><ellipse cx="5" cy="5" rx="2.4" ry=".9" fill="currentColor"/><ellipse cx="19" cy="5" rx="2.4" ry=".9" fill="currentColor"/><ellipse cx="5" cy="19" rx="2.4" ry=".9" fill="currentColor"/><ellipse cx="19" cy="19" rx="2.4" ry=".9" fill="currentColor"/></symbol>
+  <symbol id="s-sat" viewBox="0 0 24 24"><rect x="10" y="9" width="4" height="6" rx="1" fill="currentColor"/><path d="M5 8h4v8H5zM15 8h4v8h-4z" fill="currentColor" opacity=".7"/><path d="M12 6V4" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5z" fill="currentColor"/><path d="M3 12l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" opacity=".6"/><path d="M3 16l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" opacity=".35"/></symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><div class="logo"></div><div><b>Soil DataSpace</b><span>Espacio de datos de suelos</span></div></div>
+    <nav><ul>
+      <li><a href="https://soildataspace.es/">Inicio</a></li>
+      <li><a href="https://soildataspace.es/">Kit Espacios de Datos</a></li>
+      <li><a class="on" href="#tipos">Tipos de datos</a></li>
+      <li><a href="https://soildataspace.es/">Novedades</a></li>
+      <li><a href="https://soildataspace.es/">Contacto</a></li>
+      <li><a href="https://soildataspace.es/">Marketplace</a></li>
+    </ul></nav>
+    <a class="login" href="https://soildataspace.es/" target="_blank" rel="noopener">Acceder</a>
+  </div>
+</header>
+
 <div class="hero">
-  <h1>SoilDataSpace · Espacio de Datos Federado de Suelos</h1>
-  <p>
-    Infraestructura interoperable para la publicación, consumo y gobernanza
-    de datos relacionados con suelos, agricultura, hidrología y clima.
-    Acceda a datasets, servicios activos y catálogos federados.
-  </p>
-</div>
-
-<!-- RECURSOS INTERNOS -->
-<div class="section">
-  <h2>Recursos del Espacio de Datos</h2>
-
-  <div class="cards">
-
-    <div class="card" onclick="goToCatalog('datasets')">
-      <h3>Catálogo de Datasets</h3>
-      <p>
-        Conjuntos de datos publicados por entidades adheridas.
-        Incluye metadatos técnicos, formatos disponibles y niveles de acceso.
-      </p>
-      <a class="button">Explorar catálogo</a>
-    </div>
-
-    <div class="card" onclick="goToCatalog('servicios')">
-      <h3>Servicios Activos</h3>
-      <p>
-        APIs interoperables, endpoints NGSI-LD, servicios GIS (WMS/WFS)
-        y herramientas de explotación avanzada.
-      </p>
-      <a class="button">Ver servicios</a>
-    </div>
-
+  <span class="blob b1"></span><span class="blob b2"></span>
+  <div class="wrap in">
+    <span class="crumb">Proyecto · Datos del espacio</span>
+    <h1>¿Qué datos alberga <span class="grad-text">SoilDataSpace</span>?</h1>
+    <p>Del laboratorio al satélite, toda la información del suelo en un mismo espacio. Descubre qué tipos de datos integra y cómo te ayudan a decidir en campo.</p>
   </div>
 </div>
 
-<!-- CATÁLOGOS FEDERADOS -->
-<div class="section">
-  <h2>Acceso a Catálogos Públicos</h2>
+<section id="tipos">
+  <div class="wrap">
+    <div class="cards">
 
-  <div class="cards">
+      <article class="card reveal">
+        <div class="ph"><img src="assets/soil.jpg" alt="Suelo"><div class="ic"><svg><use href="#i-soil"/></svg></div><div class="cap"><h3>Edafológicos</h3><span class="tag">Propiedades físico‑químicas del suelo</span></div></div>
+        <div class="meta2"><span class="srcs"><svg title="Laboratorio"><use href="#s-flask"/></svg><svg title="Cartográfica"><use href="#s-map"/></svg></span><span class="sep"></span><span class="fmt-tag">Numérico</span><span class="fmt-tag">Ráster</span><span class="fmt-tag">CSV</span></div>
+        <div class="lbl">Qué contiene</div>
+        <ul class="det">
+          <li>Textura: arena, limo y arcilla <em>(0–30 cm)</em></li>
+          <li>Carbono orgánico y materia orgánica <em>(%)</em></li>
+          <li>pH, salinidad y CIC <em>(cmol/kg)</em></li>
+          <li>Densidad aparente <em>(g/cm³)</em></li>
+          <li>Mapas de suelo <em>(SoilGrids ~250 m)</em></li>
+        </ul>
+        <div class="divider"></div><div class="lbl">Aplicaciones</div>
+        <ul class="use"><li><svg><use href="#chk"/></svg>Ajustar la fertilización</li><li><svg><use href="#chk"/></svg>Conservar la fertilidad</li><li><svg><use href="#chk"/></svg>Reducir la erosión</li></ul>
+      </article>
 
-    <div class="card" onclick="goToCatalog('agro')">
-      <h3>Infraestructuras Agroalimentarias</h3>
-      <p>
-        Plataformas nacionales y europeas.
-      </p>
-      <a class="button">Explorar</a>
+      <article class="card reveal">
+        <div class="ph"><img src="assets/agua.jpg" alt="Riego por aspersión"><div class="ic"><svg><use href="#i-water"/></svg></div><div class="cap"><h3>Hidrológicos</h3><span class="tag">Disponibilidad hídrica y balance de agua</span></div></div>
+        <div class="meta2"><span class="srcs"><svg title="Agronómica"><use href="#s-leaf"/></svg><svg title="Sensores · IoT"><use href="#s-wifi"/></svg><svg title="Satélite"><use href="#s-sat"/></svg></span><span class="sep"></span><span class="fmt-tag">Numérico</span><span class="fmt-tag">Series</span><span class="fmt-tag">Ráster</span></div>
+        <div class="lbl">Qué contiene</div>
+        <ul class="det">
+          <li>Sistema y volumen de riego <em>(m³)</em></li>
+          <li>Humedad del suelo <em>(% · m³/m³)</em></li>
+          <li>Capacidad de campo y conductividad hidráulica</li>
+          <li>Calidad del agua <em>(N, mg/L)</em></li>
+          <li>Mapas de humedad <em>(Sentinel‑1 SAR ~10 m)</em></li>
+        </ul>
+        <div class="divider"></div><div class="lbl">Aplicaciones</div>
+        <ul class="use"><li><svg><use href="#chk"/></svg>Programar los turnos de riego</li><li><svg><use href="#chk"/></svg>Ahorrar agua y energía</li><li><svg><use href="#chk"/></svg>Evitar el estrés hídrico</li></ul>
+      </article>
+
+      <article class="card reveal">
+        <div class="ph"><img src="assets/agro.jpg" alt="Cultivo"><div class="ic"><svg><use href="#i-crop"/></svg></div><div class="cap"><h3>Agronómicos</h3><span class="tag">Manejo del cultivo y rendimiento</span></div></div>
+        <div class="meta2"><span class="srcs"><svg title="Agronómica"><use href="#s-leaf"/></svg><svg title="Laboratorio"><use href="#s-flask"/></svg></span><span class="sep"></span><span class="fmt-tag">Numérico</span><span class="fmt-tag">Nominal</span><span class="fmt-tag">CSV</span></div>
+        <div class="lbl">Qué contiene</div>
+        <ul class="det">
+          <li>Tipo, especie y edad del cultivo</li>
+          <li>Densidad arbórea y marco <em>(árboles/ha)</em></li>
+          <li>Poda, laboreo y cubierta vegetal</li>
+          <li>Fertilización y enmiendas <em>(kg N/ha)</em></li>
+          <li>Rendimiento <em>(kg/ha)</em></li>
+        </ul>
+        <div class="divider"></div><div class="lbl">Aplicaciones</div>
+        <ul class="use"><li><svg><use href="#chk"/></svg>Planificar las labores</li><li><svg><use href="#chk"/></svg>Ajustar los insumos</li><li><svg><use href="#chk"/></svg>Comparar campañas</li></ul>
+      </article>
+
+      <article class="card reveal">
+        <div class="ph"><img src="assets/clima.jpg" alt="Clima"><div class="ic"><svg><use href="#i-clima"/></svg></div><div class="cap"><h3>Climáticos</h3><span class="tag">Variables meteorológicas y de carbono</span></div></div>
+        <div class="meta2"><span class="srcs"><svg title="Sensores · IoT"><use href="#s-wifi"/></svg><svg title="Satélite"><use href="#s-sat"/></svg></span><span class="sep"></span><span class="fmt-tag">Numérico</span><span class="fmt-tag">Series</span><span class="fmt-tag">Ráster</span></div>
+        <div class="lbl">Qué contiene</div>
+        <ul class="det">
+          <li>Precipitación anual y mensual <em>(mm)</em></li>
+          <li>Temperatura media mensual <em>(°C)</em></li>
+          <li>Evapotranspiración potencial <em>(mm)</em></li>
+          <li>Temp. superficial LST <em>(Sentinel‑3 ~1 km)</em></li>
+          <li>Carbono y biomasa <em>(t C/ha · NDVI)</em></li>
+        </ul>
+        <div class="divider"></div><div class="lbl">Aplicaciones</div>
+        <ul class="use"><li><svg><use href="#chk"/></svg>Adaptarse a sequías y calor</li><li><svg><use href="#chk"/></svg>Anticipar la campaña</li><li><svg><use href="#chk"/></svg>Planificar el riego</li></ul>
+      </article>
+
+      <article class="card reveal">
+        <div class="ph"><img src="assets/dron.jpg" alt="Dron"><div class="ic"><svg><use href="#s-drone"/></svg></div><div class="cap"><h3>Vuelos con dron</h3><span class="tag">Teledetección aérea de alta resolución</span></div></div>
+        <div class="meta2"><span class="srcs"><svg title="Dron (UAV)"><use href="#s-drone"/></svg></span><span class="sep"></span><span class="fmt-tag">Ráster</span><span class="fmt-tag">LiDAR 3D</span><span class="fmt-tag">GeoTIFF</span></div>
+        <div class="lbl">Qué contiene</div>
+        <ul class="det">
+          <li>Ortomosaico RGB, multiespectral y térmico <em>(cm/píxel)</em></li>
+          <li>Modelos 3D LiDAR y fotogramétricos <em>(LAZ/PLY)</em></li>
+          <li>Hipercubo hiperespectral</li>
+          <li>Mapas de índices de vegetación <em>(GeoTIFF)</em></li>
+        </ul>
+        <div class="divider"></div><div class="lbl">Aplicaciones</div>
+        <ul class="use"><li><svg><use href="#chk"/></svg>Detectar zonas problemáticas</li><li><svg><use href="#chk"/></svg>Seguir vigor y estrés</li><li><svg><use href="#chk"/></svg>Actuar por zonas</li></ul>
+      </article>
+
+      <article class="card reveal">
+        <div class="ph"><img src="assets/satelite.jpg" alt="Satélite"><div class="ic"><svg><use href="#s-sat"/></svg></div><div class="cap"><h3>Satélite</h3><span class="tag">Series multiespectrales Copernicus</span></div></div>
+        <div class="meta2"><span class="srcs"><svg title="Satélite (Copernicus)"><use href="#s-sat"/></svg></span><span class="sep"></span><span class="fmt-tag">Ráster</span><span class="fmt-tag">GeoTIFF</span><span class="fmt-tag">Mensual</span></div>
+        <div class="lbl">Qué contiene</div>
+        <ul class="det">
+          <li>Sentinel‑2 multiespectral <em>(10 m, mensual)</em></li>
+          <li>Sentinel‑1 SAR — radar <em>(~10 m)</em></li>
+          <li>Sentinel‑3 LST y pancromática</li>
+          <li>Modelo de elevaciones DEM <em>(m)</em></li>
+          <li>Cobertura y uso del suelo</li>
+        </ul>
+        <div class="divider"></div><div class="lbl">Aplicaciones</div>
+        <ul class="use"><li><svg><use href="#chk"/></svg>Seguimiento mensual</li><li><svg><use href="#chk"/></svg>Escala parcela y cuenca</li><li><svg><use href="#chk"/></svg>Series temporales</li></ul>
+      </article>
+
+      <article class="card reveal">
+        <div class="ph"><img src="assets/geo.jpg" alt="Geoespaciales"><div class="ic"><svg><use href="#i-pin"/></svg></div><div class="cap"><h3>Geoespaciales</h3><span class="tag">Cartografía vectorial y georreferencia</span></div></div>
+        <div class="meta2"><span class="srcs"><svg title="Cartográfica"><use href="#s-map"/></svg><svg title="Agronómica"><use href="#s-leaf"/></svg></span><span class="sep"></span><span class="fmt-tag">Vectorial</span><span class="fmt-tag">Shape</span><span class="fmt-tag">GeoPackage</span></div>
+        <div class="lbl">Qué contiene</div>
+        <ul class="det">
+          <li>Parcela vectorial y sus vértices <em>(shape)</em></li>
+          <li>Coordenadas X/Y <em>(UTM 30N)</em></li>
+          <li>Referencia catastral <em>(SIGPAC)</em></li>
+          <li>Municipio, provincia y CCAA</li>
+          <li>Superficie <em>(ha)</em> y modelo de elevaciones</li>
+        </ul>
+        <div class="divider"></div><div class="lbl">Aplicaciones</div>
+        <ul class="use"><li><svg><use href="#chk"/></svg>Trazabilidad y cuaderno de campo</li><li><svg><use href="#chk"/></svg>Integrar el dato con los mapas</li><li><svg><use href="#chk"/></svg>Conectar análisis y parcela</li></ul>
+      </article>
+
+      <article class="card reveal">
+        <div class="ph"><img src="assets/procesados.jpg" alt="Productos derivados"><div class="ic"><svg><use href="#i-layers"/></svg></div><div class="cap"><h3>Productos derivados</h3><span class="tag">Índices y mapas modelizados</span></div></div>
+        <div class="meta2"><span class="srcs"><svg title="Satélite"><use href="#s-sat"/></svg><svg title="Cartográfica"><use href="#s-map"/></svg></span><span class="sep"></span><span class="fmt-tag">Ráster</span><span class="fmt-tag">GeoTIFF</span><span class="fmt-tag">Modelos</span></div>
+        <div class="lbl">Qué contiene</div>
+        <ul class="det">
+          <li>Índices de vegetación <em>(NDVI, NDRE…)</em></li>
+          <li>Mapas de humedad del suelo</li>
+          <li>Pérdida de suelo y erosión <em>(RUSLE, t/ha·año)</em></li>
+          <li>Stock y secuestro de carbono <em>(t C/ha)</em></li>
+          <li>Clase textural, pH y salinidad <em>(GeoTIFF)</em></li>
+        </ul>
+        <div class="divider"></div><div class="lbl">Aplicaciones</div>
+        <ul class="use"><li><svg><use href="#chk"/></svg>Mapas de manejo por zonas</li><li><svg><use href="#chk"/></svg>Priorizar actuaciones</li><li><svg><use href="#chk"/></svg>Modelos y predicción</li></ul>
+      </article>
+
     </div>
+  </div>
+</section>
 
-    <div class="card" onclick="goToCatalog('clima')">
-      <h3>Datos Climáticos Europeos</h3>
-      <p>
-        Infraestructuras abiertas de datos ambientales y meteorológicos.
-      </p>
-      <a class="button">Explorar</a>
-    </div>
-
+<div class="srcwrap">
+  <div class="wrap srcbar reveal">
+    <span class="t">Fuentes de información</span>
+    <span class="src"><svg><use href="#s-leaf"/></svg>Agronómica</span>
+    <span class="src"><svg><use href="#s-flask"/></svg>Laboratorio</span>
+    <span class="src"><svg><use href="#s-wifi"/></svg>Sensores · IoT</span>
+    <span class="src"><svg><use href="#s-map"/></svg>Cartográfica</span>
+    <span class="src"><svg><use href="#s-drone"/></svg>Dron (UAV)</span>
+    <span class="src"><svg><use href="#s-sat"/></svg>Satélite</span>
   </div>
 </div>
 
-<!-- INFORMACIÓN ACCESO -->
-<div class="section">
-  <h2>Información de Acceso</h2>
-
-  <p style="max-width:800px; color:var(--muted);">
-    El acceso a datasets clasificados como restringidos requiere autenticación
-    y validación contractual previa. Consulte la documentación técnica asociada
-    a cada recurso dentro del catálogo.
-  </p>
+<!-- FRANJA PARALLAX -->
+<div class="appsband">
+  <div class="in reveal">
+    <span class="eyebrow">Del dato a la acción</span>
+    <h2>¿Qué puedes hacer con estos datos?</h2>
+    <p>Combinando las distintas fuentes, el espacio habilita servicios y decisiones concretas en la explotación.</p>
+  </div>
 </div>
 
-<div class="footer">
-  © 2026 SoilDataSpace · Infraestructura Federada de Datos
-</div>
+<!-- APLICACIONES -->
+<section>
+  <div class="wrap">
+    <div class="apps">
+      <article class="acard reveal">
+        <div class="aimg"><img src="assets/fert.jpg" alt="Fertilización"></div>
+        <div class="abody">
+          <div class="ahead"><span class="aic"><svg><use href="#i-crop"/></svg></span><div><h3>Recomendación de fertilización</h3><span class="afr">Dosis a la medida</span></div></div>
+          <div class="uselbl">Combina los datos</div>
+          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span>Edafológicos</span><span class="cmb" style="--dc:#5a8a2e"><span class="ci"><svg><use href="#i-crop"/></svg></span>Agronómicos</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+        </div>
+      </article>
+      <article class="acard reveal">
+        <div class="aimg"><img src="assets/riego.jpg" alt="Riego"></div>
+        <div class="abody">
+          <div class="ahead"><span class="aic"><svg><use href="#i-water"/></svg></span><div><h3>Riego de precisión</h3><span class="afr">Cada gota cuenta</span></div></div>
+          <div class="uselbl">Combina los datos</div>
+          <div class="combina"><span class="cmb" style="--dc:#2f86c4"><span class="ci"><svg><use href="#i-water"/></svg></span>Hidrológicos</span><span class="cmb" style="--dc:#d98a1f"><span class="ci"><svg><use href="#i-clima"/></svg></span>Climáticos</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+        </div>
+      </article>
+      <article class="acard reveal">
+        <div class="aimg"><img src="assets/zonas.jpg" alt="Manejo por zonas"></div>
+        <div class="abody">
+          <div class="ahead"><span class="aic"><svg><use href="#i-layers"/></svg></span><div><h3>Manejo por zonas</h3><span class="afr">Actúa donde hace falta</span></div></div>
+          <div class="uselbl">Combina los datos</div>
+          <div class="combina"><span class="cmb" style="--dc:#5b6470"><span class="ci"><svg><use href="#s-drone"/></svg></span>Vuelos con dron</span><span class="cmb" style="--dc:#3b5bdb"><span class="ci"><svg><use href="#s-sat"/></svg></span>Satélite</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+        </div>
+      </article>
+      <article class="acard reveal">
+        <div class="aimg"><img src="assets/carbono.jpg" alt="Carbono"></div>
+        <div class="abody">
+          <div class="ahead"><span class="aic"><svg><use href="#s-leaf"/></svg></span><div><h3>Carbono y sostenibilidad</h3><span class="afr">Carbono que suma</span></div></div>
+          <div class="uselbl">Combina los datos</div>
+          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span>Edafológicos</span><span class="cmb" style="--dc:#d98a1f"><span class="ci"><svg><use href="#i-clima"/></svg></span>Climáticos</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+        </div>
+      </article>
+      <article class="acard reveal">
+        <div class="aimg"><img src="assets/erosion.jpg" alt="Erosión"></div>
+        <div class="abody">
+          <div class="ahead"><span class="aic"><svg><use href="#i-soil"/></svg></span><div><h3>Riesgo de erosión e hídrico</h3><span class="afr">Anticipa la erosión</span></div></div>
+          <div class="uselbl">Combina los datos</div>
+          <div class="combina"><span class="cmb" style="--dc:#a06b3c"><span class="ci"><svg><use href="#i-soil"/></svg></span>Edafológicos</span><span class="cmb" style="--dc:#10b981"><span class="ci"><svg><use href="#i-pin"/></svg></span>Geoespaciales</span><span class="cmb" style="--dc:#0e8f9e"><span class="ci"><svg><use href="#i-layers"/></svg></span>Productos derivados</span></div>
+        </div>
+      </article>
+      <article class="acard reveal">
+        <div class="aimg"><img src="assets/admin.jpg" alt="Trazabilidad"></div>
+        <div class="abody">
+          <div class="ahead"><span class="aic"><svg><use href="#i-pin"/></svg></span><div><h3>Trazabilidad y cuaderno digital</h3><span class="afr">Todo trazado</span></div></div>
+          <div class="uselbl">Combina los datos</div>
+          <div class="combina"><span class="cmb" style="--dc:#10b981"><span class="ci"><svg><use href="#i-pin"/></svg></span>Geoespaciales</span><span class="cmb" style="--dc:#5a8a2e"><span class="ci"><svg><use href="#i-crop"/></svg></span>Agronómicos</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap in">
+    <div>
+      <h2>¿Tienes datos de suelo?</h2>
+      <p>Únete al Espacio de Datos Federado de Suelos: comparte y reutiliza información con confianza, trazabilidad y soberanía sobre tu propio dato.</p>
+    </div>
+    <a class="btn" href="https://soildataspace.es/" target="_blank" rel="noopener">Formulario de adhesión →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div><b>Soil DataSpace</b> · Espacio de Datos Federado de Suelos · Promovido por la Universidad de Jaén</div>
+    <div>Copernicus · Sentinel · IFAPA · ITACyL · SoilGrids · ESDAC · soildataspace.es</div>
+  </div>
+</footer>
 
 <script>
-function goToCatalog(type){
-  if(type === "servicios"){
-    window.location.href = "servicios.html";
-  } else {
-    window.location.href = "catalogo.html?tipo=" + type;
-  }
-}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.06});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*55)+'ms';io.observe(el);});
 </script>
-
 </body>
 </html>
